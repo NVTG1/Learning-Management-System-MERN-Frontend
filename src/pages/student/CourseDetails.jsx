@@ -26,7 +26,24 @@ function CourseDetails() {
 
   const handleEnroll = () => {
     if (isEnrolled) {
-      navigate(`/player/${id}`);
+      // Get first chapter and first lecture to continue learning
+      if (courseData.courseContent && courseData.courseContent.length > 0) {
+        const firstChapter = courseData.courseContent[0];
+        if (firstChapter.chapterContent && firstChapter.chapterContent.length > 0) {
+          const firstLecture = firstChapter.chapterContent[0];
+          
+          if (firstLecture.lectureUrl) {
+            // Open video in new tab
+            window.open(firstLecture.lectureUrl, '_blank');
+          } else {
+            alert("Video URL not available");
+          }
+        } else {
+          alert("No lectures available in this course");
+        }
+      } else {
+        alert("Course content not available");
+      }
     } else {
       // Handle enrollment logic here
       alert("Enrollment functionality - Connect to backend");
