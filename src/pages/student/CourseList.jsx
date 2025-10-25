@@ -18,7 +18,8 @@ function CourseList() {
       if (input) {
         setFilteredCourse(
           tempCourses.filter((item) =>
-            item.title.toLowerCase().includes(input.toLowerCase())
+            item.courseTitle.toLowerCase().includes(input.toLowerCase()) ||
+            item.courseDescription.toLowerCase().includes(input.toLowerCase())
           )
         );
       } else {
@@ -73,9 +74,15 @@ function CourseList() {
             <CourseCard key={index} course={course} />
           ))
         ) : (
-          <p className="col-span-full text-center text-gray-500 mt-10">
-            No courses found.
-          </p>
+          <div className="col-span-full text-center mt-10">
+            <p className="text-gray-500 text-lg mb-2">No courses found for "{input}"</p>
+            <button
+              onClick={() => navigate("/course-list")}
+              className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition"
+            >
+              View All Courses
+            </button>
+          </div>
         )}
       </div>
       <Footer/>

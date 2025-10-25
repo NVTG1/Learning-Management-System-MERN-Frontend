@@ -33,7 +33,6 @@ function CourseDetails() {
           const firstLecture = firstChapter.chapterContent[0];
           
           if (firstLecture.lectureUrl) {
-            // Open video in new tab
             window.open(firstLecture.lectureUrl, '_blank');
           } else {
             alert("Video URL not available");
@@ -45,14 +44,13 @@ function CourseDetails() {
         alert("Course content not available");
       }
     } else {
-      // Handle enrollment logic here
+      // enrollment
       alert("Enrollment functionality - Connect to backend");
       setIsEnrolled(true);
     }
   };
 
   const handlePreview = (lectureUrl) => {
-    // Open the video URL in a new tab
     window.open(lectureUrl, "_blank");
   };
 
